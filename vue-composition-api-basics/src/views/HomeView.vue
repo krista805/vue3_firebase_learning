@@ -1,34 +1,39 @@
 <template>
   <div class="home">
-    <h3>{{counterTitle}}</h3>
+    <h3>{{counterData.title}}</h3>
+    <h5>{{ appSubTitle }}</h5>
     <div>
       <button @click="decreaseCounter" class="btn">-</button>
-      <span class="counter">{{counter}}</span>
+      <span class="counter">{{counterData.count}}</span>
       <button @click="increaseCounter" class="btn">+</button>
     </div>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input type="text" v-model="counterTitle">
+      <input type="text" v-model="counterData.title">
     </div>
 
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
-//counter is now an object
-const counter = ref(0),
-      counterTitle = ref('My Counter')
+// Reactive object
+const counterData = reactive({
+    count: 0,
+    title: 'My counter'
+})
+
+// Non reactive way to render data. Sometimes better to do vs reactive for performance reasons
+const appSubTitle = 'An amazing sub title' 
 
 const increaseCounter = () => {
-  // need to use dot notation since counter is now an object
-  counter.value++
+  counterData.count++
 };
 
 const decreaseCounter = () => {
-  counter.value--
+  counterData.count--
 };
 </script>
 
