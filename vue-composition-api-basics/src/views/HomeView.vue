@@ -14,15 +14,31 @@
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input type="text" v-model="counterData.title">
+      <input type="text" v-model="counterData.title" v-autofocus>
     </div>
 
   </div>
 </template>
 
 <script setup>
+/*
+  imports
+*/
 import { reactive, computed, watch, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted, onUpdated } from 'vue'
 
+/*
+  App subtitle
+*/
+// Non reactive way to render data. Sometimes better to do vs reactive for performance reasons
+const appSubTitle = 'An amazing sub title'
+
+onMounted(() => {
+  console.log('Do stuff related to appSubTitle')
+})
+
+/*
+  Counter
+*/
 // Reactive object
 const counterData = reactive({
     count: 0,
@@ -42,9 +58,6 @@ const oddOrEven = computed(() => {
   return 'odd'
 })
 
-// Non reactive way to render data. Sometimes better to do vs reactive for performance reasons
-const appSubTitle = 'An amazing sub title'
-
 //examle of event being pulled in ('e')
 const increaseCounter = (amount, e) => {
   counterData.count += amount
@@ -54,13 +67,14 @@ const decreaseCounter = amount => {
   counterData.count -= amount
 }
 
+onMounted(() => {
+  console.log('Do stuff related to Counter')
+})
+
 onBeforeMount(() => {
   console.log('onBeforeMount')
 })
 
-onMounted(() => {
-  console.log('onMounted')
-})
 
 onBeforeUnmount(() => {
   console.log('onBeforeUnmount')
@@ -74,6 +88,14 @@ onUpdated(() => {
   console.log('onUpdated')
 })
 
+/*
+  Directives
+*/
+const vAutofocus = {
+  mounted: (el) => {
+    el.focus()
+  }
+}
 
 ;
 
