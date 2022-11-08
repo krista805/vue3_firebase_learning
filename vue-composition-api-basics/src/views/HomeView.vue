@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { reactive, computed, watch } from 'vue'
+import { reactive, computed, watch, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
 
 // Reactive object
 const counterData = reactive({
@@ -48,11 +48,30 @@ const appSubTitle = 'An amazing sub title'
 //examle of event being pulled in ('e')
 const increaseCounter = (amount, e) => {
   counterData.count += amount
-};
+}
 
 const decreaseCounter = amount => {
   counterData.count -= amount
-};
+}
+
+onBeforeMount(() => {
+  console.log('onBeforeMount')
+})
+
+onMounted(() => {
+  console.log('onMounted')
+})
+
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount')
+})
+
+onUnmounted(() => {
+  console.log('onUnmounted')
+})
+
+;
+
 </script>
 
 <style>
