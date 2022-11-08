@@ -21,12 +21,19 @@
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed, watch } from 'vue'
 
 // Reactive object
 const counterData = reactive({
     count: 0,
     title: 'My counter'
+})
+
+//example of watcher. since our counter above is not in a ref, we cant do watch(count). It's in a nested data property, so we have to use a getter to grab the nested data property.
+watch(() => counterData.count, (newCount, oldCount) => {
+  if (newCount === 20) {
+    console.log('Way to go, you made it to 20!')
+  }
 })
 
 //computed property example
@@ -46,17 +53,6 @@ const increaseCounter = (amount, e) => {
 const decreaseCounter = amount => {
   counterData.count -= amount
 };
-</script>
-
-<script>
-export default {
-  computed: {
-    myComputedProperty() {
-      //perform logic based on data property
-      return 'my result'
-    }
-  }
-}
 </script>
 
 <style>
