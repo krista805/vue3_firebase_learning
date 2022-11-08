@@ -5,7 +5,7 @@
     <div>
       <button @click="decreaseCounter(2)" class="btn">--</button>
       <button @click="decreaseCounter(1)" class="btn">-</button>
-      <span class="counter">{{counterData.count}}</span>
+      <span class="counter" v-colorchange="'red'">{{counterData.count}}</span>
       <button @click="increaseCounter(1, $event)" class="btn">+</button>
       <button @click="increaseCounter(2)" class="btn">++</button>
     </div>
@@ -25,6 +25,7 @@
   imports
 */
 import { reactive, computed, watch, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted, onUpdated } from 'vue'
+import { vAutofocus } from '@/directives/vAutofocus'
 
 /*
   App subtitle
@@ -89,11 +90,11 @@ onUpdated(() => {
 })
 
 /*
-  Directives
+  Local Directives
 */
-const vAutofocus = {
-  mounted: (el) => {
-    el.focus()
+const vColorchange = {
+  mounted: (el, binding) => {
+    el.style.color = binding.value
   }
 }
 
