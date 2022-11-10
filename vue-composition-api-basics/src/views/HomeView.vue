@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h3>{{counterData.title}}</h3>
-    <h5>{{ appSubTitle }}</h5>
+    <h5 ref="appSubTitleRef">{{ appSubTitle }}</h5>
     <div>
       <button @click="decreaseCounter(2)" class="btn">--</button>
       <button @click="decreaseCounter(1)" class="btn">-</button>
@@ -24,7 +24,7 @@
 /*
   imports
 */
-import { reactive, computed, watch, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted, onUpdated } from 'vue'
+import { ref, reactive, computed, watch, onBeforeMount, onMounted, onBeforeUnmount, onUnmounted, onUpdated } from 'vue'
 import { vAutofocus } from '@/directives/vAutofocus'
 
 /*
@@ -33,8 +33,11 @@ import { vAutofocus } from '@/directives/vAutofocus'
 // Non reactive way to render data. Sometimes better to do vs reactive for performance reasons
 const appSubTitle = 'An amazing sub title'
 
+const appSubTitleRef = ref(null)
+
 onMounted(() => {
-  console.log('Do stuff related to appSubTitle')
+  appSubTitleRef.value
+  console.log(`The app title is ${appSubTitleRef.value.offsetWidth} px wide`)
 })
 
 /*
