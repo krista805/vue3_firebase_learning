@@ -8,11 +8,19 @@
                 <h3><slot name="subTitle"></slot></h3>
                 <slot />
                 <button @click="$emit('update:modelValue', false)">Hide Modal</button>
+                <div>
+                    Username is: {{ userData.username }}
+                </div>
             </div>
         </teleport>
 </template>
 
 <script setup>
+/*
+    import
+*/
+import { inject } from 'vue';
+
 /*
     props
 */
@@ -43,6 +51,10 @@ const emit = defineEmits([
 //     emit('update:modelValue', false)
 // }
 
+/*
+    user data
+*/
+const userData = inject('userData')
 
 
 ;
