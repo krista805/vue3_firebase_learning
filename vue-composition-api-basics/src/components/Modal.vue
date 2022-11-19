@@ -2,9 +2,8 @@
         <teleport to='body'>
             <div class="modal">
                 <h1>This is are modal</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis vel nam, nemo odio temporibus ea, enim
-                    numquam rerum expedita, voluptatem quidem pariatur? Doloremque dolore aperiam voluptatem aut totam non quae!
-                </p>
+                <h3><slot name="subTitle"></slot></h3>
+                <slot />
                 <button>Hide Modal</button>
             </div>
         </teleport>
