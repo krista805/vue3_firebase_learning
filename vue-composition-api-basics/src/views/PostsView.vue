@@ -14,6 +14,15 @@
       <h4>Comments Section</h4>    
       <textarea v-autofocus></textarea>
     </div>
+    <div>
+      <button 
+        @click="increaseCounter(1)" 
+        class="counter-button"
+        :class="{ 'yellow' : oddOrEven === 'odd' }"
+        >
+          {{ counterData.count }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -23,6 +32,7 @@
 */
 import { vAutofocus } from '@/directives/vAutofocus'
 import { ref } from 'vue'
+import { useCounter } from '../use/useCounter';
 
 /*
   posts
@@ -42,6 +52,13 @@ const posts = ref([
   },
 ])
 
+/*
+  Counter button
+*/
+const { counterData, increaseCounter, oddOrEven } = useCounter()
+
+
+;
 
 </script>
 
@@ -49,4 +66,15 @@ const posts = ref([
   ul {
     margin-bottom: 30px;
   }
+
+  .counter-button {
+    font-size: 60px;
+    width:100%;
+    background-color: pink;
+  }
+
+  .counter-button.yellow {
+    background-color: yellow;
+  }
+
 </style>
