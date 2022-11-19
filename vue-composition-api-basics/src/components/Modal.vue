@@ -1,11 +1,13 @@
 <template>
         <teleport to='body'>
-            <div class="modal">
+            <div 
+                v-if="modelValue"
+                class="modal">
                 <!-- can also use props.title -->
                 <h1>{{ title }}</h1>
                 <h3><slot name="subTitle"></slot></h3>
                 <slot />
-                <button @click="handleButtonClick">Hide Modal</button>
+                <button @click="$emit('update:modelValue', false)">Hide Modal</button>
             </div>
         </teleport>
 </template>
@@ -15,6 +17,10 @@
     props
 */
 const props = defineProps({
+    modelValue: {
+        type: Boolean,
+        default: false
+    },
     title: {
         type: String,
         default: 'No title specified'
@@ -27,15 +33,15 @@ console.log(props.title)
     emits
 */
 const emit = defineEmits([
-    'hideModal'
+    'update:modelValue'
 ])
 
 /*
     handle button click
 */
-const handleButtonClick = () => {
-    emit('hideModal')
-}
+// const handleButtonClick = () => {
+//     emit('update:modelValue', false)
+// }
 
 
 
