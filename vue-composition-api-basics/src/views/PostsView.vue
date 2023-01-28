@@ -16,11 +16,11 @@
     </div>
     <div>
       <button 
-        @click="increaseCounter(1)" 
+        @click="counter.increaseCounter(1)" 
         class="counter-button"
-        :class="{ 'yellow' : oddOrEven === 'odd' }"
+        :class="{ 'yellow' : counter.oddOrEven === 'odd' }"
         >
-          {{ counterData.count }}
+          {{ counter.count }}
       </button>
     </div>
   </div>
@@ -31,8 +31,8 @@
   imports
 */
 import { vAutofocus } from '@/directives/vAutofocus'
+import { useCounterStore } from '@/stores/counter';
 import { ref } from 'vue'
-import { useCounter } from '../use/useCounter';
 
 /*
   posts
@@ -55,8 +55,7 @@ const posts = ref([
 /*
   Counter button
 */
-const { counterData, increaseCounter, oddOrEven } = useCounter()
-
+const counter = useCounterStore()
 
 ;
 
