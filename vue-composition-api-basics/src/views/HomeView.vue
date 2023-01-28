@@ -1,20 +1,20 @@
 <template>
   <div class="home">
-    <h3>{{counterData.title}}</h3>
+    <h3>{{ counter.title }}</h3>
     <h5 ref="appSubTitleRef">{{ appSubTitle }}</h5>
     <div>
-      <button @click="decreaseCounter(2)" class="btn">--</button>
-      <button @click="decreaseCounter(1)" class="btn">-</button>
-      <span class="counter" v-colorchange="'red'">{{counterData.count}}</span>
-      <button @click="increaseCounter(1, $event)" class="btn">+</button>
-      <button @click="increaseCounter(2)" class="btn">++</button>
+      <button class="btn">--</button>
+      <button class="btn">-</button>
+      <span class="counter" v-colorchange="'red'">{{ counter.count }}</span>
+      <button class="btn">+</button>
+      <button class="btn">++</button>
     </div>
 
-    <p>This counter is {{ oddOrEven }}</p>
+    <p>This counter is odd/even</p>
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input type="text" v-model="counterData.title" v-autofocus>
+      <input v-model="counter.title" type="text" v-autofocus>
     </div>
 
   </div>
@@ -25,7 +25,7 @@
   imports
 */
 import { ref, onMounted } from 'vue'
-import { useCounter } from '@/use/useCounter';
+import { useCounterStore } from '@/stores/counter';
 import { vAutofocus } from '@/directives/vAutofocus'
 
 /*
@@ -44,7 +44,7 @@ onMounted(() => {
 /*
   Counter
 */
-const { counterData, oddOrEven, increaseCounter, decreaseCounter } = useCounter()
+const counter = useCounterStore()
 
 
 /*
